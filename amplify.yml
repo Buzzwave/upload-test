@@ -14,7 +14,7 @@ frontend:
         - ng build --configuration=production
         - ENV=dev
   artifacts:
-    baseDirectory: dist/upload-test/browser
+    baseDirectory: dist
     files:
       - '**/*'
   cache:
