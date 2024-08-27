@@ -1,0 +1,403 @@
+<h1>Create a campaign</h1>
+<mat-stepper [orientation]="(orientation$ | async) ?? 'horizontal'" linear #stepper>
+    <mat-step [stepControl]="campaignFormGroup" [editable]="isEditable">
+        <form [formGroup]="campaignFormGroup">
+            <ng-template matStepLabel>Event and campaign details</ng-template>
+            <div class="flex">
+                <div class="flex-66">
+                    <h2>Event logo</h2>
+                    <div class="container">
+                        <div class="item">
+                            <div class="flex">
+                                <mat-form-field class="half-width">
+                                    <mat-label>Logo</mat-label>
+                                    <input readonly="true" readonly matInput formControlName="logoImageUrl"
+                                        placeholder="">
+                                </mat-form-field>
+                                <button class="button-margin" type="button" mat-raised-button
+                                    (click)="fileInput.click()">Choose
+                                    image</button>
+                                <input hidden (change)="logoUpload($event)" #fileInput type="file"
+                                    accept=".jpg, .jpeg, .png, .gif" id="file">
+                            </div>
+                            <p>
+                                Image requirements:
+                            </p>
+                            <ol>
+                                <li>Dimensions: any 1:1 aspect ratio, minimum 500x500px&nbsp;
+                                    <mat-icon aria-hidden="false"
+                                        [fontIcon]="(imageDimensionsAccepted$ | async) ?? ''"></mat-icon>
+                                </li>
+                                <li>File size: 1MB or less&nbsp;
+                                    <mat-icon aria-hidden="false"
+                                        [fontIcon]="(imageSizeAccepted$ | async) ?? ''"></mat-icon>
+                                </li>
+                                <li>File format: JPG, PNG or GIF (animated GIFs are supported)&nbsp;
+                                    <mat-icon aria-hidden="false"
+                                        [fontIcon]="(imageFormatAccepted$ | async) ?? ''"></mat-icon>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <h2>Event details</h2>
+                    <div class="container">
+                        <div class="item">
+                            <mat-form-field>
+                                <mat-label>Event name</mat-label>
+                                <input matInput formControlName="eventName">
+                            </mat-form-field>
+                        </div>
+                        <div class="item">
+                            <mat-form-field>
+                                <mat-label>Location</mat-label>
+                                <input matInput formControlName="location">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="item margin-right-0-5">
+                            <mat-form-field>
+                                <mat-label>Event opening/closing dates</mat-label>
+                                <mat-date-range-input [rangePicker]="picker1">
+                                    <input matStartDate formControlName="openingDate" placeholder="Opening date">
+                                    <input matEndDate formControlName="closingDate" placeholder="Closing date">
+                                </mat-date-range-input>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-date-range-picker #picker1></mat-date-range-picker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <h2>Campaign details</h2>
+                    <div class="container">
+                        <div class="item">
+                            <mat-form-field>
+                                <mat-label>Campaign name</mat-label>
+                                <input matInput formControlName="campaignName">
+                            </mat-form-field>
+                        </div>
+                        <div class="item">
+                            <mat-form-field>
+                                <mat-label>Attendee count</mat-label>
+                                <input type="number" step="false" matInput formControlName="attendeeCount"
+                                    placeholder="" required>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="item">
+                            <mat-form-field>
+                                <mat-label>Value per post</mat-label>
+                                <span matTextPrefix>$ &nbsp;</span>
+                                <input type="number" step="false" matInput formControlName="valuePerPost" placeholder=""
+                                    required>
+                            </mat-form-field>
+                        </div>
+                        <div class="item">
+                            <mat-form-field>
+                                <mat-label>Value per click</mat-label>
+                                <span matTextPrefix>$ &nbsp;</span>
+                                <input type="number" step="false" matInput formControlName="valuePerClick"
+                                    placeholder="" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="item">
+                            <mat-form-field>
+                                <mat-label>Value per acquisition</mat-label>
+                                <span matTextPrefix>$ &nbsp;</span>
+                                <input type="number" step="false" matInput formControlName="valuePerAcquisition"
+                                    placeholder="" required>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="flex flex-33">
+                    <div class="logo-container">
+                        <img id="logo-preview" class="logo-preview" src="/assets/defaultImage.png" alt="Logo">
+                    </div>
+                </div>
+            </div>
+
+            <div class="margin-top">
+                <div class="flex">
+                    <button mat-flat-button color="primary" [disabled]="progressDisabled$ | async"
+                        (click)="saveCampaign(stepper)">Next</button>
+                    @if ((showFillForm$ | async)) {
+                    <span class="fill-remaining-space"></span>
+                    <button mat-raised-button color="warn" (click)="fillEventForm()">Fill form</button>
+                    }
+                </div>
+            </div>
+        </form>
+    </mat-step>
+
+
+
+    <mat-step [stepControl]="socialPostFormGroup" [editable]="isEditable">
+        <form [formGroup]="socialPostFormGroup">
+            <ng-template matStepLabel>Social post</ng-template>
+            <h2>Social post template</h2>
+            <div class="flex">
+                <div class="flex-66">
+                    <div class="container">
+                        <div class="item">
+                            <mat-form-field class="full-width">
+                                <mat-label>Post text</mat-label>
+                                <textarea matInput formControlName="postText"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="container margin-bottom-1">
+                        <div class="item">
+                            <mat-form-field class="full-width">
+                                <mat-label>Post forward url</mat-label>
+                                <input matInput placeholder="http:// or https://" formControlName="postForwardUrl">
+                                @if (socialPostFormGroup.controls['postForwardUrl'].hasError('invalidUrl')) {
+                                <mat-error>Invalid URL, it must begin with http(s)://www...</mat-error>
+                                }
+                                <mat-hint>Ensure you can navigate to the link without having to log in. Try clicking the
+                                    link in the example to test it</mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="flex">
+                                <mat-form-field class="half-width">
+                                    <mat-label>Image</mat-label>
+                                    <input readonly="true" readonly matInput formControlName="postImageUrl"
+                                        placeholder="">
+                                </mat-form-field>
+                                <button class="button-margin" type="button" mat-raised-button
+                                    (click)="fileInput.click()">Choose image</button>
+                                <input hidden (change)="postImageUpload($event)" #fileInput type="file"
+                                    accept=".jpg, .jpeg, .png, .gif" id="file">
+                            </div>
+                            <p>
+                                Image requirements:
+                            </p>
+                            <ol>
+                                <li>Dimensions: any 1:1 aspect ratio, minimum 500x500px&nbsp;
+                                    <mat-icon aria-hidden="false"
+                                        [fontIcon]="(imageDimensionsAccepted$ | async) ?? ''"></mat-icon>
+                                </li>
+                                <li>File size: 1MB or less&nbsp;
+                                    <mat-icon aria-hidden="false"
+                                        [fontIcon]="(imageSizeAccepted$ | async) ?? ''"></mat-icon>
+                                </li>
+                                <li>File format: JPG, PNG or GIF (animated GIFs are supported)&nbsp;
+                                    <mat-icon aria-hidden="false"
+                                        [fontIcon]="(imageFormatAccepted$ | async) ?? ''"></mat-icon>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-33">
+                    <div class="margin-left-auto">
+                        <div class="linkedin-preview-wrapper">
+                            <img id="image-preview-top" class="image-preview-top" src="/assets/linkedInPostTop.png"
+                                alt="Image preview">
+                            <p class="preview-text">{{postText$ | async}}&nbsp;<a
+                                    *ngIf="((postForwardUrl$ | async) ?? '').length > 0" target="_blank"
+                                    href="{{postForwardUrl$ | async}}">https://lnkd.in/abc123</a></p>
+                            <img id="image-preview" class="image-preview" src="/assets/defaultImage.png"
+                                alt="Image preview">
+                            <img id="image-preview-bottom" class="image-preview-bottom"
+                                src="/assets/linkedInPostBottom.png" alt="Image preview">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="margin-top">
+                <div class="flex">
+                    <button class="margin-right" [disabled]="progressDisabled$ | async" mat-raised-button
+                        matStepperPrevious>Back</button>
+                    <button mat-flat-button color="primary" [disabled]="progressDisabled$ | async"
+                        matStepperNext>Next</button>
+                    @if ((showFillForm$ | async)) {
+                    <span class="fill-remaining-space"></span>
+                    <button mat-raised-button color="warn" (click)="fillSocialForm()">Fill form</button>
+                    }
+                </div>
+            </div>
+        </form>
+    </mat-step>
+
+
+
+    <mat-step [stepControl]="activationFormGroup" [editable]="isEditable">
+        <form [formGroup]="activationFormGroup">
+            <ng-template matStepLabel>Activation</ng-template>
+            <h2>Activation pop-up template</h2>
+            <div class="flex">
+                <div class="flex-66">
+                    <div class="container">
+                        <div class="item">
+                            <mat-form-field class="full-width">
+                                <mat-label>Domain</mat-label>
+                                <mat-select formControlName="modalDomainPath">
+                                    @for (domain of domains$ | async; track domain) {
+                                    <mat-option [value]="domain">{{ domain }}</mat-option>
+                                    }
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="item">
+                            <mat-form-field class="full-width">
+                                <mat-label>Page URL lookup type</mat-label>
+                                <mat-select formControlName="modalPatternLocation">
+                                    @for (modalPatternLocation of modalPatternLocations; track modalPatternLocation) {
+                                    <mat-option [value]="modalPatternLocation.value">{{ modalPatternLocation.displayName
+                                        }}</mat-option>
+                                    }
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="item">
+                            <mat-form-field class="full-width">
+                                <mat-label>URL to match</mat-label>
+                                <span matTextPrefix>{{modalPatternPrefix$ | async}}</span>
+                                <input matInput formControlName="modalPattern">
+                                @if (activationFormGroup.controls['modalPattern'].hasError('validUrl')) {
+                                <mat-error>Invalid URL, it must begin with http(s)://www...</mat-error>
+                                }
+                                @if (activationFormGroup.controls['modalPattern'].hasError('urlMatch')) {
+                                <mat-error>The URL must begin with the domain URL selected above</mat-error>
+                                }
+                                <mat-hint>Ensure that only pages where you want the pop-up to appear are
+                                    matched</mat-hint>
+                            </mat-form-field>
+                            <mat-card *ngIf="showExampleUrls$ | async" class="margin-top-1">
+                                <p class="mat-hint">Example URLs that would be matched based on your rules:</p>
+                                <ul class="mat-hint">
+                                    <li *ngFor="let exampleUrl of exampleUrls$ | async">{{ exampleUrl }}</li>
+                                </ul>
+                            </mat-card>
+                        </div>
+                    </div>
+                    <h2>Customise pop-up text</h2>
+                    <div class="container">
+                        <div class="item">
+                            <mat-form-field class="full-width">
+                                <mat-label>Pop-up header text</mat-label>
+                                <input matInput formControlName="modalTitle">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="item">
+                            <mat-form-field class="full-width">
+                                <mat-label>Body text</mat-label>
+                                <textarea matInput formControlName="modalText"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="container margin-bottom-1">
+                        <div class="item">
+                            <mat-form-field class="full-width">
+                                <mat-label>Button text</mat-label>
+                                <input matInput formControlName="modalButtonText">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <h2>Offer an incentive</h2>
+                    <div class="container margin-bottom-1">
+                        <div class="item">
+                            <mat-slide-toggle color="primary" formControlName="useIncentive" checked="true">Use an
+                                incentive to maximise acquisitions</mat-slide-toggle>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="item">
+                            <mat-form-field class="full-width">
+                                <mat-label>Influencer incentive offer</mat-label>
+                                <textarea matInput formControlName="modalIncentiveText"></textarea>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                    <div class="container">
+                        <div class="item">
+                            <mat-form-field class="full-width">
+                                <mat-label>Terms and conditions URL (optional)</mat-label>
+                                <input matInput formControlName="modalIncentiveTCs">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-33">
+                    <div class="margin-left-auto">
+                        <div class="bordered-container">
+                            <h2 class="title">{{activationFormGroup.value.modalTitle}}</h2>
+                            <p class="left-aligned-text">{{activationFormGroup.value.modalText}}</p>
+                            <p *ngIf="useIncentive$ | async" class="left-aligned-text italics">
+                                {{activationFormGroup.value.modalIncentiveText}}<br /><a
+                                    *ngIf="((tcUrl$ | async) ?? '').length > 0" class="terms-conditions" target="_blank"
+                                    href="{{tcUrl$ | async}}">Terms and conditions</a></p>
+
+                            <button class="centered-button">
+                                <img src="/assets/linkedin-in.png" alt="Button icon" class="button-icon">
+                                <span class="button-text">{{activationFormGroup.value.modalButtonText}}</span>
+                            </button>
+                            <img src="/assets/defaultImage.png" id="activation-image-preview" alt="Centered Image"
+                                class="centered-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="margin-top">
+                <div class="flex">
+                    <button class="margin-right" [disabled]="progressDisabled$ | async" mat-raised-button
+                        matStepperPrevious>Back</button>
+                    <button mat-flat-button color="primary" [disabled]="progressDisabled$ | async"
+                        matStepperNext>Next</button>
+                    @if ((showFillForm$ | async)) {
+                    <span class="fill-remaining-space"></span>
+                    <button mat-raised-button color="warn" (click)="fillSocialForm()">Fill form</button>
+                    }
+                </div>
+            </div>
+        </form>
+    </mat-step>
+
+
+
+    <mat-step [stepControl]="socialPostFormGroup" [editable]="isEditable">
+        <form [formGroup]="socialPostFormGroup">
+            <ng-template matStepLabel>Test</ng-template>
+            <div class="margin-top">
+                <div class="flex">
+                    <button class="margin-right" [disabled]="progressDisabled$ | async" mat-raised-button
+                        matStepperPrevious>Back</button>
+                    <button mat-flat-button color="primary" [disabled]="progressDisabled$ | async"
+                        matStepperNext>Next</button>
+                    @if ((showFillForm$ | async)) {
+                    <span class="fill-remaining-space"></span>
+                    <button mat-raised-button color="warn" (click)="fillSocialForm()">Fill form</button>
+                    }
+                </div>
+            </div>
+        </form>
+    </mat-step>
+
+
+
+
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>Campaign created!</p>
+        <div>
+            <!-- <button mat-button matStepperPrevious>Back</button> -->
+            <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+        </div>
+    </mat-step>
+</mat-stepper>

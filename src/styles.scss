@@ -1,0 +1,350 @@
+@use "@angular/material" as mat;
+@use "../m3-theme";
+@use "./app/layout/layout-component.theme";
+
+@include mat.core();
+
+$buzzwave-admin-light-theme: mat.define-theme((color: (theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      density: (scale: 0,
+      ),
+    ));
+
+$buzzwave-admin-dark-theme: mat.define-theme((color: (theme-type: dark,
+        primary: mat.$magenta-palette,
+        tertiary: mat.$violet-palette,
+      ),
+      density: (scale: 0,
+      ),
+    ));
+
+// Light theme
+// Un comment below to use theme created by ng add @angular-material
+$theme: $buzzwave-admin-light-theme;
+
+// Light Theme created by ng generate @angular-material:m3-theme
+$theme: m3-theme.$light-theme;
+
+// Dark theme
+// Un-comment below to use dark theme using @angular/material
+// $dark-theme: $buzzwave-admin-dark-theme;
+
+// Dark Theme created by ng generate @angular-material:m3-theme
+$dark-theme: m3-theme.$dark-theme;
+
+:root {
+  @include mat.all-component-themes($theme);
+
+  // Components themes
+  @include layout-component.theme($theme);
+
+  // Add backwards compatibility styles for color variants
+  @include mat.color-variants-backwards-compatibility($theme);
+
+  // The prefers-color-scheme CSS media feature is used to detect if a user has requested light or dark color themes. A user indicates their preference through an operating system setting (e.g. light or dark mode) or a user agent setting.
+  // @media (prefers-color-scheme: dark) {
+  //   @include mat.all-component-colors($dark-theme);
+
+  //   // Components themes
+  //   @include layout-component.theme($dark-theme);
+
+  //   @include mat.color-variants-backwards-compatibility($dark-theme);
+  // }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h1, h2, h3 {
+  font-weight: 500 !important;
+}
+
+h1 {
+  font-size: 2em !important;
+}
+
+h2 {
+  font-size: 1.5em !important;
+}
+
+h3 {
+  font-size: 1em !important;
+}
+
+p {
+  margin-top: 1em !important;
+  margin-bottom: 1em !important;
+}
+
+.background-vector {
+  background:url('./assets/background.png')
+}
+
+// Custom colours
+$dark-blue: #003366;
+$dark-blue-hover: #023e7a;
+$mid-blue: #006AFF;
+$light-blue: #E5F0FF;
+
+$mid-grey: #808097;
+$light-grey: #F9F9FF;
+$light-grey-2: #F6F6F6;
+
+$error-red: #de3730;
+
+// Custom classes
+
+.flex {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.flex-66 {
+  width: 66%;
+}
+
+.flex-33 {
+  width: 33%;
+}
+
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+      Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.padding-0-5 {
+  padding: 0.5rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.width-33 {
+  width: 33%;
+}
+
+.width-40 {
+  width: 40%;
+}
+
+.width-50 {
+  width: 50%;
+}
+
+.half-width {
+  width: 50%;
+}
+
+.margin-right-0-5 {
+  margin-right: 0.5rem;
+}
+
+.margin-bottom-1 {
+  margin-bottom: 1rem;
+}
+
+.margin-left-1 {
+  margin-left: 1rem;
+}
+
+.margin-left-2 {
+  margin-left: 2rem;
+}
+
+.margin-left-3 {
+  margin-left: 3rem;
+}
+
+.margin-top-1 {
+  margin-top: 1rem;
+}
+
+.font-size-small {
+  font-size: 12px;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.mat-hint {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-size: 12px;
+
+  li {
+    font-size: 12px;
+  }
+}
+
+.mat-hint:not(ul) {
+  padding-left: 1rem;
+}
+
+// Material changes
+mat-calendar {
+  background-color: $light-grey;
+}
+mat-card-title.mat-mdc-card-title {
+  margin-bottom: 1rem;
+}
+
+div.mat-mdc-select-panel {
+  background-color: white !important;
+}
+
+.mat-drawer-inner-container {
+  height: 100vh !important;
+  overflow: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+h3.mat-mdc-list-item-title.mdc-list-item__primary-text.nav-title {
+  margin-top: 18px !important;
+  margin-bottom: 16px !important;
+}
+
+h3.mat-mdc-list-item-title mdc-list-item__primary-text nav-title
+
+.sidenav-title {
+  color: $dark-blue;
+}
+
+mat-sidenav.mat-drawer.mat-sidenav.sidenav.sidenav-container.mat-sidenav-fixed.mat-drawer-over.mat-drawer-opened,
+mat-sidenav.mat-drawer.mat-sidenav.sidenav.sidenav-container.mat-drawer-side {
+  background-color: $light-grey;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.mat-mdc-list-item-title.mdc-list-item__primary-text.nav-title {
+  font-weight: 400 !important;
+}
+
+.mat-mdc-nav-list .mat-mdc-list-item.mdc-list-item--activated h3.mat-mdc-list-item-title.mdc-list-item__primary-text.nav-title,.mat-mdc-nav-list .mat-mdc-list-item.mdc-list-item--activated mat-nav-list>a>mat-icon.mat-icon.mat-mdc-list-item-icon.material-icons-outlined.material-icons.mat-ligature-font.mat-icon-no-color {
+  color: $mid-blue;
+  font-weight: 700 !important;
+}
+
+mat-toolbar.mat-toolbar.mat-toolbar-single-row {
+  background-color: transparent;
+}
+
+.mat-mdc-card {
+  background-color: #ffff !important;
+}
+
+.mat-mdc-table {
+  background-color: #ffff !important;
+  border-color: var(--mat-table-row-item-outline-color, rgba(0, 0, 0, 0.12)) !important;
+  border-width: var(--mat-table-row-item-outline-width, 1px) !important;
+  border-style: solid !important;
+  border-width: 1px !important;
+}
+
+.mat-mdc-header-cell {
+  background-color: $light-grey-2 !important;
+}
+
+h3.mat-mdc-list-item-title.mdc-list-item__primary-text.nav-title,
+mat-nav-list>a>mat-icon.mat-icon.mat-mdc-list-item-icon.material-icons-outlined.material-icons.mat-ligature-font.mat-icon-no-color {
+  color: $mid-grey;
+}
+
+.mat-mdc-nav-list .mat-mdc-list-item.mdc-list-item--activated {
+  background-color: $light-blue !important;
+
+  h3.mat-mdc-list-item-title.mdc-list-item__primary-text.nav-title,
+  mat-nav-list>a>mat-icon.mat-icon.mat-mdc-list-item-icon.material-icons-outlined.material-icons.mat-ligature-font.mat-icon-no-color {
+    color: $mid-blue;
+    font-weight: bold;
+  }
+}
+
+.sidenav-scroll-wrapper {
+  background-color: $light-blue !important;
+}
+
+.mat-sidenav-content {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+$--mdc-snackbar-container-color: $mid-blue;
+
+.error-snackbar {
+  --mdc-snackbar-container-color: red;  
+  --mat-snack-bar-button-color: white;
+}
+
+.mat-step-icon {
+  background-color: $light-blue !important;
+  color: $dark-blue !important;
+}
+
+.mat-step-icon-selected {
+  background-color: $dark-blue !important;
+  color: $light-blue !important;
+}
+
+.mat-step-icon-state-done {
+  background-color: $dark-blue !important;
+  color: $light-blue !important;
+}
+
+.mat-stepper-vertical, .mat-stepper-horizontal {
+  background-color: inherit !important;
+}
+
+// Amplify auth
+button[amplify-button].amplify-button--primary {
+  background-color: $dark-blue;
+  border-radius: var(--mdc-filled-button-container-shape);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+button[amplify-button].amplify-button--primary:hover {
+  background-color: $dark-blue-hover;
+}
+
+div.amplify-tabs {
+  button.amplify-tabs__item:not(.amplify-tabs__item--active) {
+    font-weight: 500;
+    color: $dark-blue;
+  }
+
+  button.amplify-tabs__item:not(.amplify-tabs__item--active):hover {
+    font-weight: 500;
+    color: $dark-blue-hover;
+  }
+
+  button.amplify-tabs__item.amplify-tabs__item--active {
+    color: $dark-blue;
+    border-color: $dark-blue;
+  }
+
+  button.amplify-tabs__item.amplify-tabs__item--active:hover {
+    color: $dark-blue-hover;
+  }
+}
+
+
+button.amplify-button--fullwidth.amplify-button--link.amplify-button--small {
+  color: $dark-blue;
+}
+
+button.amplify-button--fullwidth.amplify-button--link.amplify-button--small:hover {
+  background-color: $light-grey;
+}

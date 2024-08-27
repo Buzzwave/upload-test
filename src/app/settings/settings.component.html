@@ -1,0 +1,3 @@
+<h1>Settings</h1>
+<p>Click here to delete your account. Note that all associated content e.g. campaigns will be deleted</p>
+<button mat-raised-button color="warn" [disabled]="disableDeleteAccount$ | async" (click)="deleteAccount()">Delete Account</button>

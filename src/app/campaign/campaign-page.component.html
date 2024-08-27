@@ -1,0 +1,13 @@
+<h1>Campaigns</h1>
+<div class="button-container">
+    <p>
+        <button #createCampaignBtn mat-flat-button color="primary" [disabled]="createCampaignBtnDisabled$ | async"
+            (click)="createCampaign()">
+            <mat-icon>add</mat-icon>
+            Create campaign
+        </button>
+        <mat-spinner diameter="30" *ngIf="createCampaignBtnDisabled$ | async"></mat-spinner>
+    </p>
+</div>
+<app-campaign-grid></app-campaign-grid>
+<router-outlet></router-outlet>

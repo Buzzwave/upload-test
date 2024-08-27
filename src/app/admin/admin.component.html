@@ -1,0 +1,19 @@
+<h1>Admin</h1>
+<p>Only buzzwave.io domain users have access to this page.</p>
+
+<div class="button-container">
+    <p>
+        <button [disabled]="createCampaignBtnDisabled$ | async" mat-flat-button color="primary" (click)="createCampaign()">
+            <mat-icon>add</mat-icon>
+            Create campaign
+        </button>
+        <mat-spinner diameter="30" *ngIf="createCampaignBtnDisabled$ | async"></mat-spinner>
+    </p>
+    <p>
+        <button [disabled]="createPixelInstallationBtnDisabled$ | async" mat-flat-button color="primary" (click)="createPixelInstallation()">
+            <mat-icon>add</mat-icon>
+            Create pixel installation
+        </button>&nbsp;Note that this is needed for domains to be listed in Create Campaign
+        <mat-spinner diameter="30" *ngIf="createPixelInstallationBtnDisabled$ | async"></mat-spinner>
+    </p>
+</div>

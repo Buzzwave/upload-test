@@ -1,0 +1,59 @@
+<mat-sidenav-container class="sidenav-container">
+  @if ((userHasCompletedFullSignup$ | async)) {
+    <mat-sidenav
+      #drawer
+      class="sidenav sidenav-container"
+      fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false"
+    >
+      <mat-toolbar>
+        @if (isHandset$ | async) {
+          <img alt="Buzzwave" class="sidenav-logo-handset" src="https://buzzwave-admin-assets.s3.eu-north-1.amazonaws.com/buzzwave-logo.png">
+          <span class="sidenav-title-handset">buzzwave</span>
+        } @else {
+          <img alt="Buzzwave" class="sidenav-logo" src="https://buzzwave-admin-assets.s3.eu-north-1.amazonaws.com/buzzwave-logo.png">
+          <span class="sidenav-title">buzzwave</span>
+        }
+      </mat-toolbar>
+      <mat-nav-list>
+        @for (item of rootRoutesTop ; track $index) {
+          <a mat-list-item [routerLink]="item.path" #link="routerLinkActive" routerLinkActive [activated]="link.isActive">
+            <mat-icon class="material-icons-outlined" [ngClass]="item.iconClass" matListItemIcon>{{ item.fontIcon }}</mat-icon>
+            <h3 class="nav-title" matListItemTitle>{{item.title}}</h3>
+          </a>
+        }
+      </mat-nav-list>
+      <mat-nav-list class="bottom-nav-items">
+        @for (item of rootRoutesBottom; track $index) {
+          <a mat-list-item [routerLink]="item.path" #link="routerLinkActive" routerLinkActive [activated]="link.isActive">
+            <mat-icon class="material-icons-outlined" matListItemIcon>{{ item.fontIcon }}</mat-icon>
+            <h3 class="nav-title" matListItemTitle>{{item.title}}</h3>
+          </a>
+        }
+        <a tabindex="1" (click)="signOut()" (keydown)="signOut()" mat-list-item routerLinkActive #link="routerLinkActive" [activated] ="false">
+          <mat-icon class="material-icons-outlined" matListItemIcon>logout</mat-icon>
+          <h3 class="nav-title" matListItemTitle>Sign out</h3>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+  }
+  <mat-sidenav-content [ngClass]="sideNavClass()">
+    @if ((isHandset$ | async) && (userHasCompletedFullSignup$ | async)) {
+      <mat-toolbar color="primary">
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          <img alt="Buzzwave" class="logo-handset" src="https://buzzwave-admin-assets.s3.eu-north-1.amazonaws.com/buzzwave-logo.png">
+        </button>
+        <span class="title-handset">buzzwave</span>
+      </mat-toolbar>
+    }
+    <div class="sidenav-scroll-wrapper">
+      <div class="sidenav-content">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<app-page-spinner></app-page-spinner>

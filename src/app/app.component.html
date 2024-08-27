@@ -1,0 +1,34 @@
+  <amplify-authenticator class="authenticator">
+    <ng-template amplifySlot="header">
+      <div style="padding: var(--amplify-space-large); text-align: center">
+        <img
+          class="amplify-image"
+          style="width: 250px;"
+          alt="Amplify logo"
+          src="https://buzzwave-admin-assets.s3.eu-north-1.amazonaws.com/buzzwave-logo-full.png"
+        />
+      </div>
+    </ng-template>
+    <ng-template amplifySlot="sign-in-header">
+      <h2
+        class="amplify-heading"
+        style="padding: var(--amplify-space-xl) 0 0 var(--amplify-space-xl); text-align: center"
+      >
+      It's great to see you
+      </h2>
+    </ng-template>
+
+    <ng-template amplifySlot="sign-up-header">
+      <h3
+        class="amplify-heading"
+        style="padding: var(--amplify-space-xl) 0 0 var(--amplify-space-xl); text-align: center"
+      >
+        Welcome to Buzzwave
+      </h3>
+    </ng-template>
+    <ng-template amplifySlot="authenticated" let-user="user" let-signOut="signOut">
+      <app-layout>
+        <router-outlet />
+      </app-layout>
+    </ng-template>
+  </amplify-authenticator>
