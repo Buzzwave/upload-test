@@ -8,67 +8,10 @@ type GeneratedSubscription<InputType, OutputType> = string & {
   __generatedSubscriptionOutput: OutputType;
 };
 
-export const onCreateAcquisition = /* GraphQL */ `subscription OnCreateAcquisition(
-  $filter: ModelSubscriptionAcquisitionFilterInput
-) {
-  onCreateAcquisition(filter: $filter) {
-    acquisitionId
-    campaignId
-    campaignPost {
-      campaignId
-      campaignPostId
-      clientAccountId
-      country
-      createdAt
-      createdBy
-      disabled
-      email
-      emailVerified
-      familyName
-      givenName
-      language
-      linkedInPostId
-      name
-      pictureUrl
-      postType
-      postTypeEnum
-      readGroups
-      sub
-      updatedAt
-      updatedBy
-      writeGroups
-      __typename
-    }
-    createdAt
-    createdBy
-    disabled
-    readGroups
-    updatedAt
-    updatedBy
-    viewedCampaignPostId
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnCreateAcquisitionSubscriptionVariables,
-  APITypes.OnCreateAcquisitionSubscription
->;
 export const onCreateCampaign = /* GraphQL */ `subscription OnCreateCampaign($filter: ModelSubscriptionCampaignFilterInput) {
   onCreateCampaign(filter: $filter) {
     campaignId
-    campaignPostClicks {
-      nextToken
-      __typename
-    }
-    campaignPostStates {
-      nextToken
-      __typename
-    }
-    campaignPosts {
-      nextToken
-      __typename
-    }
+    campaignStatus
     clientAccountId
     confirmationPageUrl
     createdAt
@@ -84,6 +27,7 @@ export const onCreateCampaign = /* GraphQL */ `subscription OnCreateCampaign($fi
       disabled
       eventId
       location
+      logoImageUrl
       name
       openingDate
       readGroups
@@ -94,6 +38,8 @@ export const onCreateCampaign = /* GraphQL */ `subscription OnCreateCampaign($fi
       __typename
     }
     eventId
+    modalButtonText
+    modalDomainPath
     modalIncentiveTCs
     modalIncentiveText
     modalPattern
@@ -120,203 +66,6 @@ export const onCreateCampaign = /* GraphQL */ `subscription OnCreateCampaign($fi
   APITypes.OnCreateCampaignSubscriptionVariables,
   APITypes.OnCreateCampaignSubscription
 >;
-export const onCreateCampaignPost = /* GraphQL */ `subscription OnCreateCampaignPost(
-  $filter: ModelSubscriptionCampaignPostFilterInput
-) {
-  onCreateCampaignPost(filter: $filter) {
-    acquisitions {
-      nextToken
-      __typename
-    }
-    campaign {
-      campaignId
-      clientAccountId
-      confirmationPageUrl
-      createdAt
-      createdBy
-      description
-      disabled
-      eventId
-      modalIncentiveTCs
-      modalIncentiveText
-      modalPattern
-      modalPatternLocationEnum
-      modalText
-      modalTitle
-      name
-      postForwardUrl
-      postImageUrl
-      postText
-      readGroups
-      registrationPageUrl
-      targetInfluencerTypeEnum
-      updatedAt
-      updatedBy
-      valueOfAcquisition
-      valueOfClick
-      valueOfPost
-      writeGroups
-      __typename
-    }
-    campaignId
-    campaignPostClicks {
-      nextToken
-      __typename
-    }
-    campaignPostId
-    clientAccountId
-    country
-    createdAt
-    createdBy
-    disabled
-    email
-    emailVerified
-    familyName
-    givenName
-    language
-    linkedInPostId
-    name
-    pictureUrl
-    postType
-    postTypeEnum
-    readGroups
-    sub
-    updatedAt
-    updatedBy
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnCreateCampaignPostSubscriptionVariables,
-  APITypes.OnCreateCampaignPostSubscription
->;
-export const onCreateCampaignPostClick = /* GraphQL */ `subscription OnCreateCampaignPostClick(
-  $filter: ModelSubscriptionCampaignPostClickFilterInput
-) {
-  onCreateCampaignPostClick(filter: $filter) {
-    campaign {
-      campaignId
-      clientAccountId
-      confirmationPageUrl
-      createdAt
-      createdBy
-      description
-      disabled
-      eventId
-      modalIncentiveTCs
-      modalIncentiveText
-      modalPattern
-      modalPatternLocationEnum
-      modalText
-      modalTitle
-      name
-      postForwardUrl
-      postImageUrl
-      postText
-      readGroups
-      registrationPageUrl
-      targetInfluencerTypeEnum
-      updatedAt
-      updatedBy
-      valueOfAcquisition
-      valueOfClick
-      valueOfPost
-      writeGroups
-      __typename
-    }
-    campaignId
-    campaignPost {
-      campaignId
-      campaignPostId
-      clientAccountId
-      country
-      createdAt
-      createdBy
-      disabled
-      email
-      emailVerified
-      familyName
-      givenName
-      language
-      linkedInPostId
-      name
-      pictureUrl
-      postType
-      postTypeEnum
-      readGroups
-      sub
-      updatedAt
-      updatedBy
-      writeGroups
-      __typename
-    }
-    campaignPostClickId
-    campaignPostId
-    createdAt
-    createdBy
-    disabled
-    postForwardUrl
-    readGroups
-    updatedAt
-    updatedBy
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnCreateCampaignPostClickSubscriptionVariables,
-  APITypes.OnCreateCampaignPostClickSubscription
->;
-export const onCreateCampaignPostState = /* GraphQL */ `subscription OnCreateCampaignPostState(
-  $filter: ModelSubscriptionCampaignPostStateFilterInput
-) {
-  onCreateCampaignPostState(filter: $filter) {
-    campaign {
-      campaignId
-      clientAccountId
-      confirmationPageUrl
-      createdAt
-      createdBy
-      description
-      disabled
-      eventId
-      modalIncentiveTCs
-      modalIncentiveText
-      modalPattern
-      modalPatternLocationEnum
-      modalText
-      modalTitle
-      name
-      postForwardUrl
-      postImageUrl
-      postText
-      readGroups
-      registrationPageUrl
-      targetInfluencerTypeEnum
-      updatedAt
-      updatedBy
-      valueOfAcquisition
-      valueOfClick
-      valueOfPost
-      writeGroups
-      __typename
-    }
-    campaignId
-    campaignPostStateId
-    createdAt
-    createdBy
-    disabled
-    state
-    updatedAt
-    updatedBy
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnCreateCampaignPostStateSubscriptionVariables,
-  APITypes.OnCreateCampaignPostStateSubscription
->;
 export const onCreateClientAccount = /* GraphQL */ `subscription OnCreateClientAccount(
   $filter: ModelSubscriptionClientAccountFilterInput
 ) {
@@ -340,10 +89,6 @@ export const onCreateClientAccount = /* GraphQL */ `subscription OnCreateClientA
     industry
     licenseKey
     licenseKeyValidUntil
-    pixelInstallationTrackings {
-      nextToken
-      __typename
-    }
     readGroups
     state
     updatedAt
@@ -423,6 +168,7 @@ export const onCreateEvent = /* GraphQL */ `subscription OnCreateEvent($filter: 
     disabled
     eventId
     location
+    logoImageUrl
     name
     openingDate
     readGroups
@@ -436,51 +182,6 @@ export const onCreateEvent = /* GraphQL */ `subscription OnCreateEvent($filter: 
 ` as GeneratedSubscription<
   APITypes.OnCreateEventSubscriptionVariables,
   APITypes.OnCreateEventSubscription
->;
-export const onCreatePixelInstallationTracking = /* GraphQL */ `subscription OnCreatePixelInstallationTracking(
-  $filter: ModelSubscriptionPixelInstallationTrackingFilterInput
-) {
-  onCreatePixelInstallationTracking(filter: $filter) {
-    clientAccount {
-      address1
-      address2
-      annualEventCount
-      averageEventAttendance
-      city
-      clientAccountId
-      companyName
-      country
-      createdAt
-      createdBy
-      currencyCode
-      disabled
-      industry
-      licenseKey
-      licenseKeyValidUntil
-      readGroups
-      state
-      updatedAt
-      updatedBy
-      writeGroups
-      zip
-      __typename
-    }
-    clientAccountId
-    createdAt
-    createdBy
-    disabled
-    domain
-    pixelInstallationTrackingId
-    readGroups
-    updatedAt
-    updatedBy
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnCreatePixelInstallationTrackingSubscriptionVariables,
-  APITypes.OnCreatePixelInstallationTrackingSubscription
 >;
 export const onCreateUser = /* GraphQL */ `subscription OnCreateUser(
   $filter: ModelSubscriptionUserFilterInput
@@ -532,67 +233,10 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser(
   APITypes.OnCreateUserSubscriptionVariables,
   APITypes.OnCreateUserSubscription
 >;
-export const onDeleteAcquisition = /* GraphQL */ `subscription OnDeleteAcquisition(
-  $filter: ModelSubscriptionAcquisitionFilterInput
-) {
-  onDeleteAcquisition(filter: $filter) {
-    acquisitionId
-    campaignId
-    campaignPost {
-      campaignId
-      campaignPostId
-      clientAccountId
-      country
-      createdAt
-      createdBy
-      disabled
-      email
-      emailVerified
-      familyName
-      givenName
-      language
-      linkedInPostId
-      name
-      pictureUrl
-      postType
-      postTypeEnum
-      readGroups
-      sub
-      updatedAt
-      updatedBy
-      writeGroups
-      __typename
-    }
-    createdAt
-    createdBy
-    disabled
-    readGroups
-    updatedAt
-    updatedBy
-    viewedCampaignPostId
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnDeleteAcquisitionSubscriptionVariables,
-  APITypes.OnDeleteAcquisitionSubscription
->;
 export const onDeleteCampaign = /* GraphQL */ `subscription OnDeleteCampaign($filter: ModelSubscriptionCampaignFilterInput) {
   onDeleteCampaign(filter: $filter) {
     campaignId
-    campaignPostClicks {
-      nextToken
-      __typename
-    }
-    campaignPostStates {
-      nextToken
-      __typename
-    }
-    campaignPosts {
-      nextToken
-      __typename
-    }
+    campaignStatus
     clientAccountId
     confirmationPageUrl
     createdAt
@@ -608,6 +252,7 @@ export const onDeleteCampaign = /* GraphQL */ `subscription OnDeleteCampaign($fi
       disabled
       eventId
       location
+      logoImageUrl
       name
       openingDate
       readGroups
@@ -618,6 +263,8 @@ export const onDeleteCampaign = /* GraphQL */ `subscription OnDeleteCampaign($fi
       __typename
     }
     eventId
+    modalButtonText
+    modalDomainPath
     modalIncentiveTCs
     modalIncentiveText
     modalPattern
@@ -644,203 +291,6 @@ export const onDeleteCampaign = /* GraphQL */ `subscription OnDeleteCampaign($fi
   APITypes.OnDeleteCampaignSubscriptionVariables,
   APITypes.OnDeleteCampaignSubscription
 >;
-export const onDeleteCampaignPost = /* GraphQL */ `subscription OnDeleteCampaignPost(
-  $filter: ModelSubscriptionCampaignPostFilterInput
-) {
-  onDeleteCampaignPost(filter: $filter) {
-    acquisitions {
-      nextToken
-      __typename
-    }
-    campaign {
-      campaignId
-      clientAccountId
-      confirmationPageUrl
-      createdAt
-      createdBy
-      description
-      disabled
-      eventId
-      modalIncentiveTCs
-      modalIncentiveText
-      modalPattern
-      modalPatternLocationEnum
-      modalText
-      modalTitle
-      name
-      postForwardUrl
-      postImageUrl
-      postText
-      readGroups
-      registrationPageUrl
-      targetInfluencerTypeEnum
-      updatedAt
-      updatedBy
-      valueOfAcquisition
-      valueOfClick
-      valueOfPost
-      writeGroups
-      __typename
-    }
-    campaignId
-    campaignPostClicks {
-      nextToken
-      __typename
-    }
-    campaignPostId
-    clientAccountId
-    country
-    createdAt
-    createdBy
-    disabled
-    email
-    emailVerified
-    familyName
-    givenName
-    language
-    linkedInPostId
-    name
-    pictureUrl
-    postType
-    postTypeEnum
-    readGroups
-    sub
-    updatedAt
-    updatedBy
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnDeleteCampaignPostSubscriptionVariables,
-  APITypes.OnDeleteCampaignPostSubscription
->;
-export const onDeleteCampaignPostClick = /* GraphQL */ `subscription OnDeleteCampaignPostClick(
-  $filter: ModelSubscriptionCampaignPostClickFilterInput
-) {
-  onDeleteCampaignPostClick(filter: $filter) {
-    campaign {
-      campaignId
-      clientAccountId
-      confirmationPageUrl
-      createdAt
-      createdBy
-      description
-      disabled
-      eventId
-      modalIncentiveTCs
-      modalIncentiveText
-      modalPattern
-      modalPatternLocationEnum
-      modalText
-      modalTitle
-      name
-      postForwardUrl
-      postImageUrl
-      postText
-      readGroups
-      registrationPageUrl
-      targetInfluencerTypeEnum
-      updatedAt
-      updatedBy
-      valueOfAcquisition
-      valueOfClick
-      valueOfPost
-      writeGroups
-      __typename
-    }
-    campaignId
-    campaignPost {
-      campaignId
-      campaignPostId
-      clientAccountId
-      country
-      createdAt
-      createdBy
-      disabled
-      email
-      emailVerified
-      familyName
-      givenName
-      language
-      linkedInPostId
-      name
-      pictureUrl
-      postType
-      postTypeEnum
-      readGroups
-      sub
-      updatedAt
-      updatedBy
-      writeGroups
-      __typename
-    }
-    campaignPostClickId
-    campaignPostId
-    createdAt
-    createdBy
-    disabled
-    postForwardUrl
-    readGroups
-    updatedAt
-    updatedBy
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnDeleteCampaignPostClickSubscriptionVariables,
-  APITypes.OnDeleteCampaignPostClickSubscription
->;
-export const onDeleteCampaignPostState = /* GraphQL */ `subscription OnDeleteCampaignPostState(
-  $filter: ModelSubscriptionCampaignPostStateFilterInput
-) {
-  onDeleteCampaignPostState(filter: $filter) {
-    campaign {
-      campaignId
-      clientAccountId
-      confirmationPageUrl
-      createdAt
-      createdBy
-      description
-      disabled
-      eventId
-      modalIncentiveTCs
-      modalIncentiveText
-      modalPattern
-      modalPatternLocationEnum
-      modalText
-      modalTitle
-      name
-      postForwardUrl
-      postImageUrl
-      postText
-      readGroups
-      registrationPageUrl
-      targetInfluencerTypeEnum
-      updatedAt
-      updatedBy
-      valueOfAcquisition
-      valueOfClick
-      valueOfPost
-      writeGroups
-      __typename
-    }
-    campaignId
-    campaignPostStateId
-    createdAt
-    createdBy
-    disabled
-    state
-    updatedAt
-    updatedBy
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnDeleteCampaignPostStateSubscriptionVariables,
-  APITypes.OnDeleteCampaignPostStateSubscription
->;
 export const onDeleteClientAccount = /* GraphQL */ `subscription OnDeleteClientAccount(
   $filter: ModelSubscriptionClientAccountFilterInput
 ) {
@@ -864,10 +314,6 @@ export const onDeleteClientAccount = /* GraphQL */ `subscription OnDeleteClientA
     industry
     licenseKey
     licenseKeyValidUntil
-    pixelInstallationTrackings {
-      nextToken
-      __typename
-    }
     readGroups
     state
     updatedAt
@@ -947,6 +393,7 @@ export const onDeleteEvent = /* GraphQL */ `subscription OnDeleteEvent($filter: 
     disabled
     eventId
     location
+    logoImageUrl
     name
     openingDate
     readGroups
@@ -960,51 +407,6 @@ export const onDeleteEvent = /* GraphQL */ `subscription OnDeleteEvent($filter: 
 ` as GeneratedSubscription<
   APITypes.OnDeleteEventSubscriptionVariables,
   APITypes.OnDeleteEventSubscription
->;
-export const onDeletePixelInstallationTracking = /* GraphQL */ `subscription OnDeletePixelInstallationTracking(
-  $filter: ModelSubscriptionPixelInstallationTrackingFilterInput
-) {
-  onDeletePixelInstallationTracking(filter: $filter) {
-    clientAccount {
-      address1
-      address2
-      annualEventCount
-      averageEventAttendance
-      city
-      clientAccountId
-      companyName
-      country
-      createdAt
-      createdBy
-      currencyCode
-      disabled
-      industry
-      licenseKey
-      licenseKeyValidUntil
-      readGroups
-      state
-      updatedAt
-      updatedBy
-      writeGroups
-      zip
-      __typename
-    }
-    clientAccountId
-    createdAt
-    createdBy
-    disabled
-    domain
-    pixelInstallationTrackingId
-    readGroups
-    updatedAt
-    updatedBy
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnDeletePixelInstallationTrackingSubscriptionVariables,
-  APITypes.OnDeletePixelInstallationTrackingSubscription
 >;
 export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser(
   $filter: ModelSubscriptionUserFilterInput
@@ -1056,67 +458,10 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser(
   APITypes.OnDeleteUserSubscriptionVariables,
   APITypes.OnDeleteUserSubscription
 >;
-export const onUpdateAcquisition = /* GraphQL */ `subscription OnUpdateAcquisition(
-  $filter: ModelSubscriptionAcquisitionFilterInput
-) {
-  onUpdateAcquisition(filter: $filter) {
-    acquisitionId
-    campaignId
-    campaignPost {
-      campaignId
-      campaignPostId
-      clientAccountId
-      country
-      createdAt
-      createdBy
-      disabled
-      email
-      emailVerified
-      familyName
-      givenName
-      language
-      linkedInPostId
-      name
-      pictureUrl
-      postType
-      postTypeEnum
-      readGroups
-      sub
-      updatedAt
-      updatedBy
-      writeGroups
-      __typename
-    }
-    createdAt
-    createdBy
-    disabled
-    readGroups
-    updatedAt
-    updatedBy
-    viewedCampaignPostId
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnUpdateAcquisitionSubscriptionVariables,
-  APITypes.OnUpdateAcquisitionSubscription
->;
 export const onUpdateCampaign = /* GraphQL */ `subscription OnUpdateCampaign($filter: ModelSubscriptionCampaignFilterInput) {
   onUpdateCampaign(filter: $filter) {
     campaignId
-    campaignPostClicks {
-      nextToken
-      __typename
-    }
-    campaignPostStates {
-      nextToken
-      __typename
-    }
-    campaignPosts {
-      nextToken
-      __typename
-    }
+    campaignStatus
     clientAccountId
     confirmationPageUrl
     createdAt
@@ -1132,6 +477,7 @@ export const onUpdateCampaign = /* GraphQL */ `subscription OnUpdateCampaign($fi
       disabled
       eventId
       location
+      logoImageUrl
       name
       openingDate
       readGroups
@@ -1142,6 +488,8 @@ export const onUpdateCampaign = /* GraphQL */ `subscription OnUpdateCampaign($fi
       __typename
     }
     eventId
+    modalButtonText
+    modalDomainPath
     modalIncentiveTCs
     modalIncentiveText
     modalPattern
@@ -1168,203 +516,6 @@ export const onUpdateCampaign = /* GraphQL */ `subscription OnUpdateCampaign($fi
   APITypes.OnUpdateCampaignSubscriptionVariables,
   APITypes.OnUpdateCampaignSubscription
 >;
-export const onUpdateCampaignPost = /* GraphQL */ `subscription OnUpdateCampaignPost(
-  $filter: ModelSubscriptionCampaignPostFilterInput
-) {
-  onUpdateCampaignPost(filter: $filter) {
-    acquisitions {
-      nextToken
-      __typename
-    }
-    campaign {
-      campaignId
-      clientAccountId
-      confirmationPageUrl
-      createdAt
-      createdBy
-      description
-      disabled
-      eventId
-      modalIncentiveTCs
-      modalIncentiveText
-      modalPattern
-      modalPatternLocationEnum
-      modalText
-      modalTitle
-      name
-      postForwardUrl
-      postImageUrl
-      postText
-      readGroups
-      registrationPageUrl
-      targetInfluencerTypeEnum
-      updatedAt
-      updatedBy
-      valueOfAcquisition
-      valueOfClick
-      valueOfPost
-      writeGroups
-      __typename
-    }
-    campaignId
-    campaignPostClicks {
-      nextToken
-      __typename
-    }
-    campaignPostId
-    clientAccountId
-    country
-    createdAt
-    createdBy
-    disabled
-    email
-    emailVerified
-    familyName
-    givenName
-    language
-    linkedInPostId
-    name
-    pictureUrl
-    postType
-    postTypeEnum
-    readGroups
-    sub
-    updatedAt
-    updatedBy
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnUpdateCampaignPostSubscriptionVariables,
-  APITypes.OnUpdateCampaignPostSubscription
->;
-export const onUpdateCampaignPostClick = /* GraphQL */ `subscription OnUpdateCampaignPostClick(
-  $filter: ModelSubscriptionCampaignPostClickFilterInput
-) {
-  onUpdateCampaignPostClick(filter: $filter) {
-    campaign {
-      campaignId
-      clientAccountId
-      confirmationPageUrl
-      createdAt
-      createdBy
-      description
-      disabled
-      eventId
-      modalIncentiveTCs
-      modalIncentiveText
-      modalPattern
-      modalPatternLocationEnum
-      modalText
-      modalTitle
-      name
-      postForwardUrl
-      postImageUrl
-      postText
-      readGroups
-      registrationPageUrl
-      targetInfluencerTypeEnum
-      updatedAt
-      updatedBy
-      valueOfAcquisition
-      valueOfClick
-      valueOfPost
-      writeGroups
-      __typename
-    }
-    campaignId
-    campaignPost {
-      campaignId
-      campaignPostId
-      clientAccountId
-      country
-      createdAt
-      createdBy
-      disabled
-      email
-      emailVerified
-      familyName
-      givenName
-      language
-      linkedInPostId
-      name
-      pictureUrl
-      postType
-      postTypeEnum
-      readGroups
-      sub
-      updatedAt
-      updatedBy
-      writeGroups
-      __typename
-    }
-    campaignPostClickId
-    campaignPostId
-    createdAt
-    createdBy
-    disabled
-    postForwardUrl
-    readGroups
-    updatedAt
-    updatedBy
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnUpdateCampaignPostClickSubscriptionVariables,
-  APITypes.OnUpdateCampaignPostClickSubscription
->;
-export const onUpdateCampaignPostState = /* GraphQL */ `subscription OnUpdateCampaignPostState(
-  $filter: ModelSubscriptionCampaignPostStateFilterInput
-) {
-  onUpdateCampaignPostState(filter: $filter) {
-    campaign {
-      campaignId
-      clientAccountId
-      confirmationPageUrl
-      createdAt
-      createdBy
-      description
-      disabled
-      eventId
-      modalIncentiveTCs
-      modalIncentiveText
-      modalPattern
-      modalPatternLocationEnum
-      modalText
-      modalTitle
-      name
-      postForwardUrl
-      postImageUrl
-      postText
-      readGroups
-      registrationPageUrl
-      targetInfluencerTypeEnum
-      updatedAt
-      updatedBy
-      valueOfAcquisition
-      valueOfClick
-      valueOfPost
-      writeGroups
-      __typename
-    }
-    campaignId
-    campaignPostStateId
-    createdAt
-    createdBy
-    disabled
-    state
-    updatedAt
-    updatedBy
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnUpdateCampaignPostStateSubscriptionVariables,
-  APITypes.OnUpdateCampaignPostStateSubscription
->;
 export const onUpdateClientAccount = /* GraphQL */ `subscription OnUpdateClientAccount(
   $filter: ModelSubscriptionClientAccountFilterInput
 ) {
@@ -1388,10 +539,6 @@ export const onUpdateClientAccount = /* GraphQL */ `subscription OnUpdateClientA
     industry
     licenseKey
     licenseKeyValidUntil
-    pixelInstallationTrackings {
-      nextToken
-      __typename
-    }
     readGroups
     state
     updatedAt
@@ -1471,6 +618,7 @@ export const onUpdateEvent = /* GraphQL */ `subscription OnUpdateEvent($filter: 
     disabled
     eventId
     location
+    logoImageUrl
     name
     openingDate
     readGroups
@@ -1484,51 +632,6 @@ export const onUpdateEvent = /* GraphQL */ `subscription OnUpdateEvent($filter: 
 ` as GeneratedSubscription<
   APITypes.OnUpdateEventSubscriptionVariables,
   APITypes.OnUpdateEventSubscription
->;
-export const onUpdatePixelInstallationTracking = /* GraphQL */ `subscription OnUpdatePixelInstallationTracking(
-  $filter: ModelSubscriptionPixelInstallationTrackingFilterInput
-) {
-  onUpdatePixelInstallationTracking(filter: $filter) {
-    clientAccount {
-      address1
-      address2
-      annualEventCount
-      averageEventAttendance
-      city
-      clientAccountId
-      companyName
-      country
-      createdAt
-      createdBy
-      currencyCode
-      disabled
-      industry
-      licenseKey
-      licenseKeyValidUntil
-      readGroups
-      state
-      updatedAt
-      updatedBy
-      writeGroups
-      zip
-      __typename
-    }
-    clientAccountId
-    createdAt
-    createdBy
-    disabled
-    domain
-    pixelInstallationTrackingId
-    readGroups
-    updatedAt
-    updatedBy
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnUpdatePixelInstallationTrackingSubscriptionVariables,
-  APITypes.OnUpdatePixelInstallationTrackingSubscription
 >;
 export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser(
   $filter: ModelSubscriptionUserFilterInput

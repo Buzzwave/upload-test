@@ -8,65 +8,10 @@ type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryOutput: OutputType;
 };
 
-export const getAcquisition = /* GraphQL */ `query GetAcquisition($acquisitionId: ID!) {
-  getAcquisition(acquisitionId: $acquisitionId) {
-    acquisitionId
-    campaignId
-    campaignPost {
-      campaignId
-      campaignPostId
-      clientAccountId
-      country
-      createdAt
-      createdBy
-      disabled
-      email
-      emailVerified
-      familyName
-      givenName
-      language
-      linkedInPostId
-      name
-      pictureUrl
-      postType
-      postTypeEnum
-      readGroups
-      sub
-      updatedAt
-      updatedBy
-      writeGroups
-      __typename
-    }
-    createdAt
-    createdBy
-    disabled
-    readGroups
-    updatedAt
-    updatedBy
-    viewedCampaignPostId
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.GetAcquisitionQueryVariables,
-  APITypes.GetAcquisitionQuery
->;
 export const getCampaign = /* GraphQL */ `query GetCampaign($campaignId: ID!) {
   getCampaign(campaignId: $campaignId) {
     campaignId
-    campaignPostClicks {
-      nextToken
-      __typename
-    }
-    campaignPostStates {
-      nextToken
-      __typename
-    }
-    campaignPosts {
-      nextToken
-      __typename
-    }
+    campaignStatus
     clientAccountId
     confirmationPageUrl
     createdAt
@@ -82,6 +27,7 @@ export const getCampaign = /* GraphQL */ `query GetCampaign($campaignId: ID!) {
       disabled
       eventId
       location
+      logoImageUrl
       name
       openingDate
       readGroups
@@ -92,6 +38,8 @@ export const getCampaign = /* GraphQL */ `query GetCampaign($campaignId: ID!) {
       __typename
     }
     eventId
+    modalButtonText
+    modalDomainPath
     modalIncentiveTCs
     modalIncentiveText
     modalPattern
@@ -118,197 +66,6 @@ export const getCampaign = /* GraphQL */ `query GetCampaign($campaignId: ID!) {
   APITypes.GetCampaignQueryVariables,
   APITypes.GetCampaignQuery
 >;
-export const getCampaignPost = /* GraphQL */ `query GetCampaignPost($campaignPostId: ID!) {
-  getCampaignPost(campaignPostId: $campaignPostId) {
-    acquisitions {
-      nextToken
-      __typename
-    }
-    campaign {
-      campaignId
-      clientAccountId
-      confirmationPageUrl
-      createdAt
-      createdBy
-      description
-      disabled
-      eventId
-      modalIncentiveTCs
-      modalIncentiveText
-      modalPattern
-      modalPatternLocationEnum
-      modalText
-      modalTitle
-      name
-      postForwardUrl
-      postImageUrl
-      postText
-      readGroups
-      registrationPageUrl
-      targetInfluencerTypeEnum
-      updatedAt
-      updatedBy
-      valueOfAcquisition
-      valueOfClick
-      valueOfPost
-      writeGroups
-      __typename
-    }
-    campaignId
-    campaignPostClicks {
-      nextToken
-      __typename
-    }
-    campaignPostId
-    clientAccountId
-    country
-    createdAt
-    createdBy
-    disabled
-    email
-    emailVerified
-    familyName
-    givenName
-    language
-    linkedInPostId
-    name
-    pictureUrl
-    postType
-    postTypeEnum
-    readGroups
-    sub
-    updatedAt
-    updatedBy
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.GetCampaignPostQueryVariables,
-  APITypes.GetCampaignPostQuery
->;
-export const getCampaignPostClick = /* GraphQL */ `query GetCampaignPostClick($campaignPostClickId: ID!) {
-  getCampaignPostClick(campaignPostClickId: $campaignPostClickId) {
-    campaign {
-      campaignId
-      clientAccountId
-      confirmationPageUrl
-      createdAt
-      createdBy
-      description
-      disabled
-      eventId
-      modalIncentiveTCs
-      modalIncentiveText
-      modalPattern
-      modalPatternLocationEnum
-      modalText
-      modalTitle
-      name
-      postForwardUrl
-      postImageUrl
-      postText
-      readGroups
-      registrationPageUrl
-      targetInfluencerTypeEnum
-      updatedAt
-      updatedBy
-      valueOfAcquisition
-      valueOfClick
-      valueOfPost
-      writeGroups
-      __typename
-    }
-    campaignId
-    campaignPost {
-      campaignId
-      campaignPostId
-      clientAccountId
-      country
-      createdAt
-      createdBy
-      disabled
-      email
-      emailVerified
-      familyName
-      givenName
-      language
-      linkedInPostId
-      name
-      pictureUrl
-      postType
-      postTypeEnum
-      readGroups
-      sub
-      updatedAt
-      updatedBy
-      writeGroups
-      __typename
-    }
-    campaignPostClickId
-    campaignPostId
-    createdAt
-    createdBy
-    disabled
-    postForwardUrl
-    readGroups
-    updatedAt
-    updatedBy
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.GetCampaignPostClickQueryVariables,
-  APITypes.GetCampaignPostClickQuery
->;
-export const getCampaignPostState = /* GraphQL */ `query GetCampaignPostState($campaignPostStateId: ID!) {
-  getCampaignPostState(campaignPostStateId: $campaignPostStateId) {
-    campaign {
-      campaignId
-      clientAccountId
-      confirmationPageUrl
-      createdAt
-      createdBy
-      description
-      disabled
-      eventId
-      modalIncentiveTCs
-      modalIncentiveText
-      modalPattern
-      modalPatternLocationEnum
-      modalText
-      modalTitle
-      name
-      postForwardUrl
-      postImageUrl
-      postText
-      readGroups
-      registrationPageUrl
-      targetInfluencerTypeEnum
-      updatedAt
-      updatedBy
-      valueOfAcquisition
-      valueOfClick
-      valueOfPost
-      writeGroups
-      __typename
-    }
-    campaignId
-    campaignPostStateId
-    createdAt
-    createdBy
-    disabled
-    state
-    updatedAt
-    updatedBy
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.GetCampaignPostStateQueryVariables,
-  APITypes.GetCampaignPostStateQuery
->;
 export const getClientAccount = /* GraphQL */ `query GetClientAccount($clientAccountId: ID!) {
   getClientAccount(clientAccountId: $clientAccountId) {
     address1
@@ -330,10 +87,6 @@ export const getClientAccount = /* GraphQL */ `query GetClientAccount($clientAcc
     industry
     licenseKey
     licenseKeyValidUntil
-    pixelInstallationTrackings {
-      nextToken
-      __typename
-    }
     readGroups
     state
     updatedAt
@@ -413,6 +166,7 @@ export const getEvent = /* GraphQL */ `query GetEvent($eventId: ID!) {
     disabled
     eventId
     location
+    logoImageUrl
     name
     openingDate
     readGroups
@@ -424,51 +178,6 @@ export const getEvent = /* GraphQL */ `query GetEvent($eventId: ID!) {
   }
 }
 ` as GeneratedQuery<APITypes.GetEventQueryVariables, APITypes.GetEventQuery>;
-export const getPixelInstallationTracking = /* GraphQL */ `query GetPixelInstallationTracking($pixelInstallationTrackingId: ID!) {
-  getPixelInstallationTracking(
-    pixelInstallationTrackingId: $pixelInstallationTrackingId
-  ) {
-    clientAccount {
-      address1
-      address2
-      annualEventCount
-      averageEventAttendance
-      city
-      clientAccountId
-      companyName
-      country
-      createdAt
-      createdBy
-      currencyCode
-      disabled
-      industry
-      licenseKey
-      licenseKeyValidUntil
-      readGroups
-      state
-      updatedAt
-      updatedBy
-      writeGroups
-      zip
-      __typename
-    }
-    clientAccountId
-    createdAt
-    createdBy
-    disabled
-    domain
-    pixelInstallationTrackingId
-    readGroups
-    updatedAt
-    updatedBy
-    writeGroups
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.GetPixelInstallationTrackingQueryVariables,
-  APITypes.GetPixelInstallationTrackingQuery
->;
 export const getUser = /* GraphQL */ `query GetUser($userId: ID!) {
   getUser(userId: $userId) {
     clientAccount {
@@ -513,157 +222,6 @@ export const getUser = /* GraphQL */ `query GetUser($userId: ID!) {
   }
 }
 ` as GeneratedQuery<APITypes.GetUserQueryVariables, APITypes.GetUserQuery>;
-export const listAcquisitions = /* GraphQL */ `query ListAcquisitions(
-  $acquisitionId: ID
-  $filter: ModelAcquisitionFilterInput
-  $limit: Int
-  $nextToken: String
-  $sortDirection: ModelSortDirection
-) {
-  listAcquisitions(
-    acquisitionId: $acquisitionId
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    sortDirection: $sortDirection
-  ) {
-    items {
-      acquisitionId
-      campaignId
-      createdAt
-      createdBy
-      disabled
-      readGroups
-      updatedAt
-      updatedBy
-      viewedCampaignPostId
-      writeGroups
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ListAcquisitionsQueryVariables,
-  APITypes.ListAcquisitionsQuery
->;
-export const listCampaignPostClicks = /* GraphQL */ `query ListCampaignPostClicks(
-  $campaignPostClickId: ID
-  $filter: ModelCampaignPostClickFilterInput
-  $limit: Int
-  $nextToken: String
-  $sortDirection: ModelSortDirection
-) {
-  listCampaignPostClicks(
-    campaignPostClickId: $campaignPostClickId
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    sortDirection: $sortDirection
-  ) {
-    items {
-      campaignId
-      campaignPostClickId
-      campaignPostId
-      createdAt
-      createdBy
-      disabled
-      postForwardUrl
-      readGroups
-      updatedAt
-      updatedBy
-      writeGroups
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ListCampaignPostClicksQueryVariables,
-  APITypes.ListCampaignPostClicksQuery
->;
-export const listCampaignPostStates = /* GraphQL */ `query ListCampaignPostStates(
-  $campaignPostStateId: ID
-  $filter: ModelCampaignPostStateFilterInput
-  $limit: Int
-  $nextToken: String
-  $sortDirection: ModelSortDirection
-) {
-  listCampaignPostStates(
-    campaignPostStateId: $campaignPostStateId
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    sortDirection: $sortDirection
-  ) {
-    items {
-      campaignId
-      campaignPostStateId
-      createdAt
-      createdBy
-      disabled
-      state
-      updatedAt
-      updatedBy
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ListCampaignPostStatesQueryVariables,
-  APITypes.ListCampaignPostStatesQuery
->;
-export const listCampaignPosts = /* GraphQL */ `query ListCampaignPosts(
-  $campaignPostId: ID
-  $filter: ModelCampaignPostFilterInput
-  $limit: Int
-  $nextToken: String
-  $sortDirection: ModelSortDirection
-) {
-  listCampaignPosts(
-    campaignPostId: $campaignPostId
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    sortDirection: $sortDirection
-  ) {
-    items {
-      campaignId
-      campaignPostId
-      clientAccountId
-      country
-      createdAt
-      createdBy
-      disabled
-      email
-      emailVerified
-      familyName
-      givenName
-      language
-      linkedInPostId
-      name
-      pictureUrl
-      postType
-      postTypeEnum
-      readGroups
-      sub
-      updatedAt
-      updatedBy
-      writeGroups
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ListCampaignPostsQueryVariables,
-  APITypes.ListCampaignPostsQuery
->;
 export const listCampaigns = /* GraphQL */ `query ListCampaigns(
   $campaignId: ID
   $filter: ModelCampaignFilterInput
@@ -680,6 +238,7 @@ export const listCampaigns = /* GraphQL */ `query ListCampaigns(
   ) {
     items {
       campaignId
+      campaignStatus
       clientAccountId
       confirmationPageUrl
       createdAt
@@ -687,6 +246,8 @@ export const listCampaigns = /* GraphQL */ `query ListCampaigns(
       description
       disabled
       eventId
+      modalButtonText
+      modalDomainPath
       modalIncentiveTCs
       modalIncentiveText
       modalPattern
@@ -825,6 +386,7 @@ export const listEvents = /* GraphQL */ `query ListEvents(
       disabled
       eventId
       location
+      logoImageUrl
       name
       openingDate
       readGroups
@@ -841,41 +403,6 @@ export const listEvents = /* GraphQL */ `query ListEvents(
 ` as GeneratedQuery<
   APITypes.ListEventsQueryVariables,
   APITypes.ListEventsQuery
->;
-export const listPixelInstallationTrackings = /* GraphQL */ `query ListPixelInstallationTrackings(
-  $filter: ModelPixelInstallationTrackingFilterInput
-  $limit: Int
-  $nextToken: String
-  $pixelInstallationTrackingId: ID
-  $sortDirection: ModelSortDirection
-) {
-  listPixelInstallationTrackings(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    pixelInstallationTrackingId: $pixelInstallationTrackingId
-    sortDirection: $sortDirection
-  ) {
-    items {
-      clientAccountId
-      createdAt
-      createdBy
-      disabled
-      domain
-      pixelInstallationTrackingId
-      readGroups
-      updatedAt
-      updatedBy
-      writeGroups
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ListPixelInstallationTrackingsQueryVariables,
-  APITypes.ListPixelInstallationTrackingsQuery
 >;
 export const listUsers = /* GraphQL */ `query ListUsers(
   $filter: ModelUserFilterInput
