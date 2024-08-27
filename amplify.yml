@@ -9,11 +9,15 @@ frontend:
   phases:
     build:
       commands:
-        - mkdir ./dist && touch ./dist/index.html
+        - npm install -g @angular/cli
+        - ng version
+        - ng build --configuration=production
+        - ENV=dev
   artifacts:
-    baseDirectory: dist
+    baseDirectory: dist/upload-test/browser
     files:
       - '**/*'
   cache:
     paths:
       - .npm/**/*
+      - node_modules/**/*
